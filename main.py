@@ -41,11 +41,13 @@ class RRT:
                     check += 1
             if check == len(self.s_goal):
                 break
-        for i in range(len(self.paths)):
-            path = self.paths[i]
-            # path = self.remove_residual_node(path, self.start, self.goals[i])
-            # path = self.curve_path(path, self.start, self.goals[i])
-            self.paths[i] = path
+        print("[INFO] RRT planning done!.")
+        # for i in range(len(self.paths)):
+        #     path = self.paths[i]
+        #     path = self.remove_residual_node(path, START, GOALS[i])
+        #     path = self.curve_path(path, self.start, self.goals[i])
+        #     self.paths[i] = path
+        # print("[INFO] Smooth paths done!.")
         return self.paths
 
     def new_state(self, node_start, node_goal):
@@ -113,6 +115,7 @@ class RRT:
     def remove_residual_node(self, path, start, goal):
         new_path = [start]
 
+        # Need to check again!!!
         while new_path[-1] != goal:
             for i in range(len(path)):
                 if not is_collision(Node(path[i]), Node(new_path[-1]), OBS_RECTANGLE, OBS_CIRCLE, ROBOT_RADIUS) \
@@ -157,6 +160,7 @@ if __name__ == "__main__":
     st = time.time()
     paths = rrt.planning()
     # vertex = rrt.vertex
+    print(paths)
     print("RRT done: {:.2f}s".format(time.time()-st))
     with open('paths.txt', 'wb') as f:
         pickle.dump(paths, f)

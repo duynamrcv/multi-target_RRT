@@ -9,6 +9,7 @@ from CreateModel1 import *
 
 with open("paths.txt", "rb") as f:
     paths = pickle.load(f)
+# print(paths)
 
 fig = plt.figure()
 ax = fig.add_subplot(111)
