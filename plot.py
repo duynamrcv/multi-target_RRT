@@ -44,10 +44,11 @@ for path in paths:
 plt.plot(START[0], START[1], "bs", linewidth=5)
 plt.plot(np.array(GOALS)[:,0], np.array(GOALS)[:,1], "rs", linewidth=5)
 
-ax.set_xlim(X_RANGE)
-ax.set_ylim(Y_RANGE)
 ax.set_xlabel("x [m]")
 ax.set_ylabel("y [m]")
 ax.axis("scaled")
+ax.set_xlim(X_RANGE)
+ax.set_ylim(Y_RANGE)
+plt.tight_layout()
 
 plt.show()
