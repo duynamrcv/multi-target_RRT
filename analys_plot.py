@@ -14,6 +14,7 @@ colors = ["green", "red", "blue"]
 if scenario == 1:
     from CreateModel1 import *
 
+## Plot paths
 fig = plt.figure()
 ax = fig.add_subplot(111)
 
@@ -51,5 +52,4 @@ ax.axis("scaled")
 ax.set_xlim(X_RANGE)
 ax.set_ylim(Y_RANGE)
 plt.tight_layout()
-
 plt.show()
