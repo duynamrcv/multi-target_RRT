@@ -32,7 +32,7 @@ OBS_RECTANGLE = [[160,   0,  40, 240],
                  [600, 620, 240,  40]]
 
 # Robot constraints
-ROBOT_RADIUS = 5
+ROBOT_RADIUS = 10
 MAX_ANGLE = np.deg2rad(60.0)
 
 # RRT configs

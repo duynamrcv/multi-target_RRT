@@ -3,11 +3,16 @@ import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.patches as patches
 import pickle
+import glob
 
 from utils import *
-from CreateModel1 import *
 
-with open("paths.txt", "rb") as f:
+method = "rrt"
+scenario = 1
+if scenario == 1:
+    from CreateModel1 import *
+
+with open(glob.glob("data/scen{}_{}_*.txt".format(scenario, method))[0], "rb") as f:
     paths = pickle.load(f)
 # print(paths)
 

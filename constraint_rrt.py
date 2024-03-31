@@ -3,9 +3,14 @@ import sys
 import math
 import numpy as np
 
-from CreateModel1 import *
 from utils import *
-from bezier import Bezier
+
+# select model
+scenario = 1
+if scenario == 1:
+    from CreateModel1 import *
+elif scenario == 2:
+    pass
 
 class RRT:
     def __init__(self, x_start:Node, x_goals:Node):
@@ -112,38 +117,38 @@ class RRT:
 
         return path
 
-    def remove_residual_node(self, path, start, goal):
-        new_path = [start]
+    # def remove_residual_node(self, path, start, goal):
+    #     new_path = [start]
 
-        # Need to check again!!!
-        while new_path[-1] != goal:
-            for i in range(len(path)):
-                if not is_collision(Node(path[i]), Node(new_path[-1]), OBS_RECTANGLE, OBS_CIRCLE, ROBOT_RADIUS) \
-                        and angle_thresh( Node(new_path[-1]), Node(path[i]), MAX_ANGLE):
-                    new_path.append(path[i])
-                    break
-        return new_path
+    #     # Need to check again!!!
+    #     while new_path[-1] != goal:
+    #         for i in range(len(path)):
+    #             if not is_collision(Node(path[i]), Node(new_path[-1]), OBS_RECTANGLE, OBS_CIRCLE, ROBOT_RADIUS) \
+    #                     and angle_thresh( Node(new_path[-1]), Node(path[i]), MAX_ANGLE):
+    #                 new_path.append(path[i])
+    #                 break
+    #     return new_path
 
-    def curve_path(self, path, start, goal):
-        new_path = [start]
-        for i in range(1, len(path)-1):
-            p = path[i]
-            dis = min_distance_to_obs(Node(p))
+    # def curve_path(self, path, start, goal):
+    #     new_path = [start]
+    #     for i in range(1, len(path)-1):
+    #         p = path[i]
+    #         dis = min_distance_to_obs(Node(p))
 
-            p1 = path[i-1]
-            p2 = path[i+1]
+    #         p1 = path[i-1]
+    #         p2 = path[i+1]
 
-            ang1 = math.atan2(p1[1] - p[1], p1[0] - p[0])
-            new1 = [p[0] + dis*math.cos(ang1), p[1] + dis*math.sin(ang1)]
-            ang2 = math.atan2(p2[1] - p[1], p2[0] - p[0])
-            new2 = [p[0] + dis*math.cos(ang2), p[1] + dis*math.sin(ang2)]
+    #         ang1 = math.atan2(p1[1] - p[1], p1[0] - p[0])
+    #         new1 = [p[0] + dis*math.cos(ang1), p[1] + dis*math.sin(ang1)]
+    #         ang2 = math.atan2(p2[1] - p[1], p2[0] - p[0])
+    #         new2 = [p[0] + dis*math.cos(ang2), p[1] + dis*math.sin(ang2)]
 
-            bs = Bezier(new1, p, new2)
-            out = bs.evaluate(10)
-            new_path.extend(out)
+    #         bs = Bezier(new1, p, new2)
+    #         out = bs.evaluate(10)
+    #         new_path.extend(out)
             
-        new_path.append(goal)
-        return new_path
+    #     new_path.append(goal)
+    #     return new_path
 
     @staticmethod
     def get_distance_and_angle(node_start, node_end):
@@ -161,6 +166,7 @@ if __name__ == "__main__":
     paths = rrt.planning()
     # vertex = rrt.vertex
     print(paths)
-    print("RRT done: {:.2f}s".format(time.time()-st))
-    with open('paths.txt', 'wb') as f:
+    pt = time.time() - st
+    print("RRT done: {:.4f}s".format(pt))
+    with open('data/scen{}_rrt_{:.4f}.txt'.format(scenario, pt), 'wb') as f:
         pickle.dump(paths, f)
