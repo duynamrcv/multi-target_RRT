@@ -18,13 +18,27 @@ def compute_length(path):
                              path[i][1]-path[i+1][1])
     return length
 
+plt.figure()
+data = []
 for i, method in enumerate(methods):
     files = glob.glob("data/scen{}_{}_*.txt".format(scenario, method))
+    lengths = []
     for file in files:
-        paths = pickle.load(open(file, "rb"))
+        d = pickle.load(open(file, "rb"))
+        paths = d["paths"]
         length = 0
         for path in paths:
             length += compute_length(path)
         length /=  len(paths)
-    print("Method: {} - average length = {:.2f}".format(method, length))
+        lengths.append(length)
+        # print("Method: {} - average length = {:.2f}".format(method, length))
+    lengths = np.array(lengths)
+    data.append(lengths)
+
+medianprops = dict(linewidth=2.0, color='firebrick')
+plt.boxplot(data, widths=0.2, whis=2.0, sym="", medianprops=medianprops,
+            labels=[method for method in methods])
+plt.ylabel("Length [m]")
+plt.tight_layout()
+plt.show()
     

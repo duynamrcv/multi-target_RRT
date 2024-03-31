@@ -37,7 +37,8 @@ if OBS_CIRCLE is not None:
 for i, method in enumerate(methods):
     print(method)
     file = open(glob.glob("data/scen{}_{}_*.txt".format(scenario, method))[0], "rb")
-    paths = pickle.load(file)
+    d = pickle.load(file)
+    paths = d["paths"]
     for path in paths:
         ax.plot(np.array(path)[:,0], np.array(path)[:,1], colors[i], linewidth=2, label=method)
 
