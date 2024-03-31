@@ -8,14 +8,16 @@ import glob
 from utils import *
 
 method = "rrt"
-scenario = 2
+scenario = 1
+counter = 0
 if scenario == 1:
     from CreateModel1 import *
 elif scenario == 2:
     from CreateModel2 import *
 
-with open(glob.glob("data/scen{}_{}_*.txt".format(scenario, method))[0], "rb") as f:
-    paths = pickle.load(f)
+with open("data_rrt/scen{}_{}_{}.txt".format(scenario, method, counter), "rb") as f:
+    d  = pickle.load(f)
+    paths = d["paths"]
 # print(paths)
 
 fig = plt.figure()
