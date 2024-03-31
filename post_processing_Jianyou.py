@@ -8,15 +8,14 @@ from utils import *
 from bezier import Bezier
 
 def remove_residual_node(path, start, goal, obs_rectangle, obs_circle, delta):
-    new_path = [start]
-    count = 500
-    while new_path[-1] != goal and count > 0:
-        for i in range(len(path)):
-            if not is_collision(Node(new_path[-1]), Node(path[i]), obs_rectangle, obs_circle, delta):
-                new_path.append(path[i])
-                break
-        count -= 1
-    return count, new_path
+    new_path = [goal]
+    # while new_path[-1] != start and count > 0:
+    length = len(path)
+    for i in range(1,length):
+        if is_collision(Node(new_path[-1]), Node(path[i]), obs_rectangle, obs_circle, delta):
+            new_path.append(path[i-1])
+    new_path.append(start)
+    return new_path
 
 def curve_path(path, obs_rectangle, obs_circle, delta):
     new_path = [path[0]]
@@ -58,17 +57,14 @@ st = time.time()
 new_paths = []
 success = 0
 for id in range(len(GOALS)):
-    count, new_path = remove_residual_node(paths[id], START, GOALS[id], OBS_RECTANGLE, OBS_CIRCLE, ROBOT_RADIUS)
-    if count == 0:
-        print("Failed")
-    else:
-        new_path = curve_path(new_path, OBS_RECTANGLE, OBS_CIRCLE, ROBOT_RADIUS)
-        new_paths.append(new_path)
-        success += 1
+    new_path = remove_residual_node(paths[id], START, GOALS[id], OBS_RECTANGLE, OBS_CIRCLE, ROBOT_RADIUS)
+    new_path = curve_path(new_path, OBS_RECTANGLE, OBS_CIRCLE, ROBOT_RADIUS)
+    new_paths.append(new_path)
+    success += 1
 pt += time.time() - st
 
 if success == len(GOALS):
-    with open('data/scen{}_our_{:.4f}.txt'.format(scenario, pt), 'wb') as f:
+    with open('data/scen{}_jianyou_{:.4f}.txt'.format(scenario, pt), 'wb') as f:
         pickle.dump(new_paths, f)
     fig = plt.figure()
     ax = fig.add_subplot(111)
