@@ -8,9 +8,11 @@ import glob
 from utils import *
 
 method = "rrt"
-scenario = 1
+scenario = 2
 if scenario == 1:
     from CreateModel1 import *
+elif scenario == 2:
+    from CreateModel2 import *
 
 with open(glob.glob("data/scen{}_{}_*.txt".format(scenario, method))[0], "rb") as f:
     paths = pickle.load(f)

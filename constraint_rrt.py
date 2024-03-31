@@ -6,11 +6,11 @@ import numpy as np
 from utils import *
 
 # select model
-scenario = 1
+scenario = 2
 if scenario == 1:
     from CreateModel1 import *
 elif scenario == 2:
-    pass
+    from CreateModel2 import *
 
 class RRT:
     def __init__(self, x_start:Node, x_goals:Node):

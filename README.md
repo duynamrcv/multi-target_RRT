@@ -7,7 +7,8 @@ $ python3 post_processing.py
 ```
 
 ## Results
-![result](result/result.png)
+![result](result/scen1.png)
+![result](result/scen2.png)
 
 ## Citation
 ```

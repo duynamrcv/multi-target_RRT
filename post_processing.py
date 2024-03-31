@@ -45,6 +45,8 @@ def curve_path(path, obs_rectangle, obs_circle, delta):
 scenario = 1
 if scenario == 1:
     from CreateModel1 import *
+elif scenario == 2:
+    from CreateModel2 import *
 
 file = glob.glob("data/scen{}_rrt_*.txt".format(scenario))[0]
 with open(file, "rb") as f:
