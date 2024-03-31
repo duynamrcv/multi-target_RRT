@@ -43,16 +43,18 @@ def curve_path(path, obs_rectangle, obs_circle, delta):
     return new_path
 
 scenario = 1
+counter = 0
 if scenario == 1:
     from CreateModel1 import *
 elif scenario == 2:
     from CreateModel2 import *
 
-file = glob.glob("data/scen{}_rrt_*.txt".format(scenario))[0]
+file = "data/scen{}_rrt_{}.txt".format(scenario, counter)
 with open(file, "rb") as f:
-    paths = pickle.load(f)
+    d = pickle.load(f)
+    paths = d["paths"]
 
-pt = float(file[:-4].split("_")[-1])
+pt = d["pt"]
 
 st = time.time()
 new_paths = []
@@ -68,8 +70,11 @@ for id in range(len(GOALS)):
 pt += time.time() - st
 
 if success == len(GOALS):
-    with open('data/scen{}_our_{:.4f}.txt'.format(scenario, pt), 'wb') as f:
-        pickle.dump(new_paths, f)
+    with open('data/scen{}_our_{}.txt'.format(scenario, counter), 'wb') as f:
+        d = dict()
+        d["paths"] = new_paths
+        d["pt"] = pt
+        pickle.dump(d, f)
     fig = plt.figure()
     ax = fig.add_subplot(111)
 

@@ -7,6 +7,7 @@ from utils import *
 
 # select model
 scenario = 1
+counter = 0
 if scenario == 1:
     from CreateModel1 import *
 elif scenario == 2:
@@ -132,7 +133,10 @@ if __name__ == "__main__":
     pt = time.time() - st
     if success:
         print("RRT done: {:.4f}s".format(pt))
-        with open('data/scen{}_rrt_{:.4f}.txt'.format(scenario, pt), 'wb') as f:
-            pickle.dump(paths, f)
+        with open('data/scen{}_rrt_{}.txt'.format(scenario, counter), 'wb') as f:
+            d = dict()
+            d["paths"] = paths
+            d["pt"] = pt
+            pickle.dump(d, f)
     else:
         print("Failed.")
