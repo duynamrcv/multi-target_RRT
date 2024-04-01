@@ -59,8 +59,10 @@ for i, method in enumerate(methods):
     smooths = np.array(smooths)
     data.append(smooths)
 
-medianprops = dict(linewidth=2.0, color='firebrick')
-plt.boxplot(data, widths=0.2, whis=2.0, sym="", medianprops=medianprops,
+medianprops = dict(linewidth=1.5, color='firebrick')
+boxprops = dict(linewidth=1.5, color="black")
+plt.boxplot(data, widths=0.2, whis=(0,100), sym="",
+            medianprops=medianprops, boxprops=boxprops,
             labels=[method for method in names])
 plt.ylabel("Smooth value")
 plt.tight_layout()
