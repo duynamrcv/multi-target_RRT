@@ -18,7 +18,7 @@ def compute_length(path):
                              path[i][1]-path[i+1][1])
     return length
 
-plt.figure()
+plt.figure(figsize=(3,4))
 data = []
 for i, method in enumerate(methods):
     files = glob.glob("data/scen{}_{}_*.txt".format(scenario, method))
