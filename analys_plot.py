@@ -10,6 +10,7 @@ from utils import *
 scenario = 1
 methods = ["rrt", "jianyou", "our"]
 colors = ["green", "red", "blue"]
+names = ["Theta-RRT", "FN-RRT", "Our"]
 
 if scenario == 1:
     from CreateModel1 import *
@@ -40,7 +41,8 @@ for i, method in enumerate(methods):
     d = pickle.load(file)
     paths = d["paths"]
     for path in paths:
-        ax.plot(np.array(path)[:,0], np.array(path)[:,1], colors[i], linewidth=2, label=method)
+        ax.plot(np.array(path)[:,0], np.array(path)[:,1], colors[i], linewidth=2)
+    ax.plot([], [], colors[i], label=names[i])
 
 # Plot start and goals
 plt.plot(START[0], START[1], "bs", linewidth=5)

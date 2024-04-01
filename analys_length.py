@@ -10,6 +10,7 @@ from utils import *
 scenario = 1
 methods = ["rrt", "jianyou", "our"]
 colors = ["green", "red", "blue"]
+names = ["Theta-RRT", "FN-RRT", "Our"]
 
 def compute_length(path):
     length = 0
@@ -37,7 +38,7 @@ for i, method in enumerate(methods):
 
 medianprops = dict(linewidth=2.0, color='firebrick')
 plt.boxplot(data, widths=0.2, whis=2.0, sym="", medianprops=medianprops,
-            labels=[method for method in methods])
+            labels=[method for method in names])
 plt.ylabel("Length [m]")
 plt.tight_layout()
 plt.show()

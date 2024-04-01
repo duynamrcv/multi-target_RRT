@@ -11,6 +11,7 @@ from utils import *
 scenario = 1
 methods = ["rrt", "jianyou", "our"]
 colors = ["green", "red", "blue"]
+names = ["Theta-RRT", "FN-RRT", "Our"]
 
 def dot_product(vec1, vec2):
     return sum(x * y for x, y in zip(vec1, vec2))
@@ -33,9 +34,12 @@ def compute_smooth(path):
             count += 1
         else:
             cos_angle = dot_prod / (mag_vec1 * mag_vec2)
-            # print(dot_prod, mag_vec1, mag_vec2, cos_angle)
-            gamma = math.acos(cos_angle)
-            smooth += gamma
+            if abs(cos_angle) > 1:
+                count += 1
+            else:
+                # print(dot_prod, mag_vec1, mag_vec2, cos_angle)
+                gamma = math.acos(cos_angle)
+                smooth += gamma
     return smooth/(len(path)-2-count)
 
 plt.figure(figsize=(3,4))
@@ -57,8 +61,8 @@ for i, method in enumerate(methods):
 
 medianprops = dict(linewidth=2.0, color='firebrick')
 plt.boxplot(data, widths=0.2, whis=2.0, sym="", medianprops=medianprops,
-            labels=[method for method in methods])
-plt.ylabel("smooth [m]")
+            labels=[method for method in names])
+plt.ylabel("Smooth value")
 plt.tight_layout()
 plt.show()
     
