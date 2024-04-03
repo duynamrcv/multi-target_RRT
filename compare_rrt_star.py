@@ -3,7 +3,6 @@ import sys
 import math
 import numpy as np
 
-import utils_queue
 from utils import *
 
 # select model
@@ -114,20 +113,6 @@ class RRTStar:
             node = node.parent
 
         return cost
-
-    def update_cost(self, parent_node):
-        OPEN = utils_queue.QueueFIFO()
-        OPEN.put(parent_node)
-
-        while not OPEN.empty():
-            node = OPEN.get()
-
-            if len(node.child) == 0:
-                continue
-
-            for node_c in node.child:
-                node_c.Cost = self.get_new_cost(node, node_c)
-                OPEN.put(node_c)
 
     def extract_path(self, node_end, goal):
         path = [[goal.x, goal.y]]
