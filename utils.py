@@ -6,6 +6,7 @@ class Node:
         self.x = n[0]
         self.y = n[1]
         self.parent = None
+        self.cost = np.inf
     
 def angle_thresh(node:Node, node_new:Node, max_angle):
     pnode = node.parent
