@@ -144,7 +144,7 @@ if __name__ == "__main__":
     pt = time.time() - st
     if success:
         print("RRT done: {:.4f}s".format(pt))
-        with open('data_rrt/scen{}_rrtstar_{}.txt'.format(scenario, counter), 'wb') as f:
+        with open('data/scen{}_rrtstar_{}.txt'.format(scenario, counter), 'wb') as f:
             d = dict()
             d["paths"] = paths
             d["pt"] = pt
