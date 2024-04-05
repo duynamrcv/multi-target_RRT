@@ -12,6 +12,7 @@ scenario = 1
 methods = ["rrt", "jianyou", "our"]
 colors = ["green", "red", "blue"]
 names = ["Theta-RRT", "FN-RRT", "Our"]
+file_name = "reduce"
 
 def dot_product(vec1, vec2):
     return sum(x * y for x, y in zip(vec1, vec2))
@@ -66,5 +67,6 @@ plt.boxplot(data, widths=0.2, whis=(0,100), sym="",
             labels=[method for method in names])
 plt.ylabel("Smooth value")
 plt.tight_layout()
+plt.savefig("result/{}_scen{}_smooth.pdf".format(file_name, scenario), format="pdf", bbox_inches="tight")
 plt.show()
     

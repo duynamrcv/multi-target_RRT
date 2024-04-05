@@ -11,6 +11,7 @@ scenario = 1
 methods = ["rrt", "jianyou", "our"]
 colors = ["green", "red", "blue"]
 names = ["Theta-RRT", "FN-RRT", "Our"]
+file_name = "reduce"
 
 def compute_length(path):
     length = 0
@@ -43,5 +44,6 @@ plt.boxplot(data, widths=0.2, whis=(0,100), sym="",
             labels=[method for method in names])
 plt.ylabel("Length [m]")
 plt.tight_layout()
+plt.savefig("result/{}_scen{}_length.pdf".format(file_name, scenario), format="pdf", bbox_inches="tight")
 plt.show()
     

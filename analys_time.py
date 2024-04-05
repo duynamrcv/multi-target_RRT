@@ -9,9 +9,10 @@ import glob
 from utils import *
 
 scenario = 1
-methods = ["fmt", "rrt_smart", "our"]
+methods = ["rrt", "jianyou", "our"]
 colors = ["green", "red", "blue"]
-names = ["FMT", "RRT*-Smart", "Our"]
+names = ["Theta-RRT", "FN-RRT", "Our"]
+file_name = "reduce"
 
 plt.figure(figsize=(3,4))
 data = []
@@ -33,5 +34,5 @@ plt.boxplot(data, widths=0.2, whis=(0,100), sym="",
             labels=[method for method in names])
 plt.ylabel("Computational time [s]")
 plt.tight_layout()
+plt.savefig("result/{}_scen{}_time.pdf".format(file_name, scenario), format="pdf", bbox_inches="tight")
 plt.show()
-    

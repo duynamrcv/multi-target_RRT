@@ -8,9 +8,11 @@ import glob
 from utils import *
 
 scenario = 1
+index = 1
 methods = ["rrt", "jianyou", "our"]
 colors = ["green", "red", "blue"]
 names = ["Theta-RRT", "FN-RRT", "Our"]
+file_name = "reduce"
 
 if scenario == 1:
     from CreateModel1 import *
@@ -37,7 +39,7 @@ if OBS_CIRCLE is not None:
 # Plot path
 for i, method in enumerate(methods):
     print(method)
-    file = open(glob.glob("data/scen{}_{}_*.txt".format(scenario, method))[0], "rb")
+    file = open("data/scen{}_{}_{}.txt".format(scenario, method, index), "rb")
     d = pickle.load(file)
     paths = d["paths"]
     for path in paths:
@@ -55,4 +57,5 @@ ax.axis("scaled")
 ax.set_xlim(X_RANGE)
 ax.set_ylim(Y_RANGE)
 plt.tight_layout()
+plt.savefig("result/{}_scen{}_plot.pdf".format(file_name, scenario), format="pdf", bbox_inches="tight")
 plt.show()
