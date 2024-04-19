@@ -12,7 +12,10 @@ if scenario == 1:
     from CreateModel1 import *
 elif scenario == 2:
     from CreateModel2 import *
-
+elif scenario == 3:
+    from CreateModel2 import *
+elif scenario == 4:
+    from CreateModel2 import *
 class RRTStar:
     def __init__(self, x_start:Node, x_goals:Node):
         self.s_start = Node(x_start)

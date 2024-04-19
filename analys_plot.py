@@ -12,7 +12,11 @@ index = 1
 methods = ["rrt", "jianyou", "our"]
 colors = ["green", "red", "blue"]
 names = ["Theta-RRT", "FN-RRT", "Our"]
+# methods = ["star", "smart", "fmt","our"]
+# colors = ["cyan", "purple","orange", "blue"]
+# names = ["RRT*", "RRT*-Smart","FMT", "Our"]
 file_name = "reduce"
+
 
 if scenario == 1:
     from CreateModel1 import *
