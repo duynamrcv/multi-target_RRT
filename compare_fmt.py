@@ -14,9 +14,9 @@ if scenario == 1:
 elif scenario == 2:
     from CreateModel2 import *
 elif scenario == 3:
-    from CreateModel2 import *
+    from CreateModel3 import *
 elif scenario == 4:
-    from CreateModel2 import *
+    from CreateModel4 import *
 class FMT:
     def __init__(self, x_start, x_goals):
         self.x_init = Node(x_start)

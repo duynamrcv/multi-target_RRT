@@ -48,9 +48,9 @@ if scenario == 1:
 elif scenario == 2:
     from CreateModel2 import *
 elif scenario == 3:
-    from CreateModel2 import *
+    from CreateModel3 import *
 elif scenario == 4:
-    from CreateModel2 import *
+    from CreateModel4 import *
 file = "data/scen{}_rrt_{}.txt".format(scenario, counter)
 with open(file, "rb") as f:
     d = pickle.load(f)

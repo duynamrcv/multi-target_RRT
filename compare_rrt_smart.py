@@ -13,9 +13,9 @@ if scenario == 1:
 elif scenario == 2:
     from CreateModel2 import *
 elif scenario == 3:
-    from CreateModel2 import *
+    from CreateModel3 import *
 elif scenario == 4:
-    from CreateModel2 import *
+    from CreateModel4 import *
 import math
 import random
 import matplotlib.pyplot as plt

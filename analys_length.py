@@ -7,7 +7,7 @@ import glob
 
 from utils import *
 
-scenario = 1
+scenario = 4
 methods = ["rrt", "jianyou", "our"]
 colors = ["green", "red", "blue"]
 names = ["Theta-RRT", "FN-RRT", "Our"]
