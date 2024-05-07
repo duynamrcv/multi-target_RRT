@@ -20,7 +20,7 @@ def compute_length(path):
                              path[i][1]-path[i+1][1])
     return length
 
-plt.figure(figsize=(3,4))
+plt.figure(figsize=(3,3))
 data = []
 for i, method in enumerate(methods):
     files = glob.glob("data/scen{}_{}_*.txt".format(scenario, method))
@@ -37,13 +37,17 @@ for i, method in enumerate(methods):
     lengths = np.array(lengths)
     data.append(lengths)
 
-medianprops = dict(linewidth=1.5, color='firebrick')
-boxprops = dict(linewidth=1.5, color="black")
-plt.boxplot(data, widths=0.2, whis=(0,100), sym="",
-            medianprops=medianprops, boxprops=boxprops,
-            labels=[method for method in names])
+data = np.array(data)
+val_max = data.max(1)
+val_min = data.min(1)
+val_mean = data.mean(1)
+val_std = data.std(1)
+
+plt.errorbar(names, val_mean, [val_mean - val_min, val_max - val_mean],
+            capsize=3, fmt="b--X", ecolor = "black",)
 plt.ylabel("Length [m]")
 plt.tight_layout()
+plt.grid(axis='y')
 plt.savefig("result/{}_scen{}_length.pdf".format(file_name, scenario), format="pdf", bbox_inches="tight")
 plt.show()
     
