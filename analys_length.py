@@ -4,6 +4,7 @@ import matplotlib.pyplot as plt
 import matplotlib.patches as patches
 import pickle
 import glob
+from scipy import stats
 
 from utils import *
 
@@ -20,7 +21,8 @@ def compute_length(path):
                              path[i][1]-path[i+1][1])
     return length
 
-plt.figure(figsize=(3,3))
+fig = plt.figure(figsize=(3,3))
+ax = fig.subplots()
 data = []
 for i, method in enumerate(methods):
     files = glob.glob("data/scen{}_{}_*.txt".format(scenario, method))
@@ -43,11 +45,17 @@ val_min = data.min(1)
 val_mean = data.mean(1)
 val_std = data.std(1)
 
-plt.errorbar(names, val_mean, [val_mean - val_min, val_max - val_mean],
-            capsize=3, fmt="b--X", ecolor = "black",)
+q1 = val_mean + val_std*stats.norm.ppf(0.3)
+q3 = val_mean + val_std*stats.norm.ppf(0.7)
+whislo = q1 - (q3 - q1)*1.5
+whishi = q3 + (q3 - q1)*1.5
+
+keys = ['med', 'q1', 'q3', 'whislo', 'whishi']
+stats = [dict(zip(keys, vals)) for vals in zip(val_mean, q1, q3, val_min, val_max)]
+ax.set_xticklabels(names)
+plt.subplot().bxp(stats, showfliers=False)
 plt.ylabel("Length [m]")
 plt.tight_layout()
 plt.grid(axis='y')
 plt.savefig("result/{}_scen{}_length.pdf".format(file_name, scenario), format="pdf", bbox_inches="tight")
 plt.show()
-    
