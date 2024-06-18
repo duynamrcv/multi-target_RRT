@@ -2,8 +2,7 @@
 
 This repository presents the following article in Python:
 
-Thu Hang Khuat, Duy-Nam Bui, Hoa TT. Nguyen,
-Mien L. Trinh , Minh T. Nguyen , Manh Duong Phung, "**Multi-goal Rapidly Exploring Random Tree with Safety and Dynamic Constraints for UAV Cooperative Path Planning**," *Preprint*. 
+Thu Hang Khuat, Duy-Nam Bui, Hoa TT. Nguyen, Mien L. Trinh , Minh T. Nguyen , Manh Duong Phung, "**Multi-goal Rapidly Exploring Random Tree with Safety and Dynamic Constraints for UAV Cooperative Path Planning**," *Preprint*. 
 <!-- [[**IEEE** *Xplore*](https://ieeexplore.ieee.org/abstract/document/9732989)] [[Citation](#citation)] -->
 
 ## Installation
@@ -14,8 +13,8 @@ git@github.com:duynamrcv/multi-target_RRT.git
 ## Run simulation
 The current version have four different scenarios, from 1 to 4. Before run our method, please change the value of `scenario` in file. To run our method, run:
 ```
-$ python3 contraint_rrt.py
-$ python3 post_processing.py
+python3 contraint_rrt.py
+python3 post_processing.py
 ```
 
 We also implement some methods to conduct the comparisons, i.e. `compare_*.py`. To run those methods, run:
