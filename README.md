@@ -2,7 +2,7 @@
 
 This repository presents the following article in Python:
 
-Thu Hang Khuat, Duy-Nam Bui, Hoa TT. Nguyen, Mien L. Trinh , Minh T. Nguyen , Manh Duong Phung, "**Multi-goal Rapidly Exploring Random Tree with Safety and Dynamic Constraints for UAV Cooperative Path Planning**," *IEEE Transactions on Vehicular Technology*. 
+Thu Hang Khuat, Duy-Nam Bui, Hoa TT. Nguyen, Mien L. Trinh , Minh T. Nguyen , Manh Duong Phung, "**Multi-goal Rapidly Exploring Random Tree with Safety and Dynamic Constraints for UAV Cooperative Path Planning**," *IEEE Transactions on Vehicular Technology*. 2025. 
 [[**IEEE** *Xplore*](https://ieeexplore.ieee.org/document/10964594)] [[Citation](#citation)]
 
 ## Installation
